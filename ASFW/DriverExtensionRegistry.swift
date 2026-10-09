@@ -100,13 +100,28 @@ enum DriverExtensionRegistryInspector {
     }
 
     private static func driverIsAttached() -> Bool {
-        let service = IOServiceGetMatchingService(
+        guard let matching = IOServiceNameMatching(driverServiceName) else {
+            return false
+        }
+        var iterator: io_iterator_t = 0
+        guard IOServiceGetMatchingServices(
             kIOMainPortDefault,
-            IOServiceNameMatching(driverServiceName)
-        )
-        guard service != 0 else { return false }
-        IOObjectRelease(service)
-        return true
+            matching,
+            &iterator
+        ) == KERN_SUCCESS else {
+            return false
+        }
+        defer { IOObjectRelease(iterator) }
+
+        while true {
+            let service = IOIteratorNext(iterator)
+            if service == 0 { break }
+            defer { IOObjectRelease(service) }
+            if registryString(service, key: "CFBundleIdentifier") == driverServerName {
+                return true
+            }
+        }
+        return false
     }
 
     private static func controllerIsPresent() -> Bool {
