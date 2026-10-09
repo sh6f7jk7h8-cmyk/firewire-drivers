@@ -237,7 +237,9 @@ private:
     [[nodiscard]] uint64_t InitAddress() const noexcept { return model_ == FirefaceModel::kFF800 ? Register::kFF800Init : Register::kFF400Init; }
     [[nodiscard]] uint64_t StartAddress() const noexcept { return model_ == FirefaceModel::kFF800 ? Register::kFF800Start : Register::kFF400Start; }
     [[nodiscard]] bool IsInternalConfigured(uint32_t src) const noexcept {
-        return src == 1U;
+        // The master-clock bit overrides the saved preferred external source.
+        // A Fireface can therefore report both bit 0 and source bits 10-12.
+        return (src & 1U) != 0;
     }
     [[nodiscard]] bool IsExternalConfigured(uint32_t src) const noexcept { return !IsInternalConfigured(src); }
     [[nodiscard]] AudioStreamRuntimeCaps MakeCaps() const noexcept {

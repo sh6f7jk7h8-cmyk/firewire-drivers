@@ -40,6 +40,7 @@ public:
         writes.push_back({address.addressHi, address.addressLo, {bytes.begin(), bytes.end()}});
         const uint64_t key = (static_cast<uint64_t>(address.addressHi) << 32) | address.addressLo;
         if (key == failWriteAddress) { callback(AsyncStatus::kHardwareError, {}); return {}; }
+        if (key == 0x00020000001cULL && status1AfterInit) status1 = *status1AfterInit;
         callback(AsyncStatus::kSuccess, {});
         return {};
     }
@@ -56,6 +57,7 @@ public:
     uint32_t revision{0x24d};
     uint32_t status0{0x01c00000};
     uint32_t status1{0x00000007};
+    std::optional<uint32_t> status1AfterInit;
     uint32_t captureWord{6};
     uint32_t flashStatus{0};
     uint64_t failReadAddress{0};
@@ -277,6 +279,26 @@ TEST(FirefaceSequenceTests, ExternalSourceRequiresSelectedActiveLocked48Clock) {
     bus.status0 = 0x01000000U | 0x20000000U | 0x40000000U | 0x06000000U;
     ASFW::Audio::RME::FirefaceFamilyDriver locked(io, ASFW::Audio::RME::FirefaceModel::kFF400, false);
     EXPECT_TRUE(locked.Configure({}, {.sampleRateHz = 48000}));
+}
+
+TEST(FirefaceSequenceTests, FF800MasterClockOverridesSavedExternalPreference) {
+    FirefaceScriptBus bus;
+    // Captured from FF800 hardware: internal clock active, word clock saved as
+    // the preferred source, and a 44.1 kHz idle rate before the 48 kHz start.
+    bus.status0 = 0x01c000b0U;
+    bus.status1 = 0xa8001001U;
+    bus.status1AfterInit = 0xa8001007U;
+    RouteState route; ProtocolRegisterIO io(bus, bus, route.registry, route.route);
+    ASFW::Audio::RME::FirefaceFamilyDriver family(
+        io, ASFW::Audio::RME::FirefaceModel::kFF800, true);
+
+    ASFW::Audio::AudioDuplexChannels channels{};
+    channels.hostToDeviceIsoChannel = 3;
+    ASSERT_TRUE(family.Configure(channels, {.sampleRateHz = 48000}));
+    EXPECT_TRUE(bus.writes.empty());
+    ASSERT_TRUE(family.AssignChannels(channels));
+    ASSERT_TRUE(family.ArmDeviceTxAndEnable());
+    EXPECT_TRUE(family.Confirm());
 }
 
 TEST(FirefaceSequenceTests, FF800CapturePollTimesOutAtBoundAndHonorsCancellation) {
