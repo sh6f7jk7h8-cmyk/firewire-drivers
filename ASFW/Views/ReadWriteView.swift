@@ -197,12 +197,13 @@ struct ReadWriteView: View {
                     }
 
                     if let rCode = lastResponseCode {
+                        let ackComplete = operationType.isWrite && lastStatus == 0 && rCode == 0xFF
                         HStack {
-                            Label("rCode", systemImage: rCode == 0 ? "checkmark.seal.fill" : "exclamationmark.triangle.fill")
+                            Label(ackComplete ? "ACK" : "rCode", systemImage: rCode == 0 || ackComplete ? "checkmark.seal.fill" : "exclamationmark.triangle.fill")
                                 .font(.headline)
-                                .foregroundColor(rCode == 0 ? .green : .orange)
+                                .foregroundColor(rCode == 0 || ackComplete ? .green : .orange)
                             Spacer()
-                            Text(String(format: "0x%X", rCode) + " (" + viewModel.decodeResponseCode(rCode) + ")")
+                            Text(ackComplete ? "Complete" : String(format: "0x%X", rCode) + " (" + viewModel.decodeResponseCode(rCode) + ")")
                                 .font(.system(.body, design: .monospaced))
                         }
                     }

@@ -202,7 +202,7 @@ final class FirefaceControlModel: ObservableObject {
             : connector.asyncBlockRead(destinationID: node, addressHigh: high,
                                        addressLow: low, length: UInt32(length))
         guard let handle else { return nil }
-        guard let result = awaitResult(handle: handle, capacity: length),
+        guard let result = awaitResult(handle: handle, capacity: length, acceptsAckComplete: false),
               result.payload.count >= length else { return nil }
         return Data(result.payload.prefix(length))
     }
@@ -212,15 +212,20 @@ final class FirefaceControlModel: ObservableObject {
                                                 addressHigh: UInt16(truncatingIfNeeded: address >> 32),
                                                 addressLow: UInt32(truncatingIfNeeded: address),
                                                 payload: payload) else { return false }
-        return awaitResult(handle: handle, capacity: 0) != nil
+        return awaitResult(handle: handle, capacity: 0, acceptsAckComplete: true) != nil
     }
 
-    private func awaitResult(handle: UInt16, capacity: Int) -> ASFWDriverConnector.AsyncTransactionResult? {
+    private func awaitResult(handle: UInt16, capacity: Int,
+                             acceptsAckComplete: Bool) -> ASFWDriverConnector.AsyncTransactionResult? {
         let deadline = Date().addingTimeInterval(2)
         while Date() < deadline {
             if let result = connector.getTransactionResult(handle: handle,
                                                            initialPayloadCapacity: capacity + 32) {
-                return result.status == 0 && result.responseCode == 0 ? result : nil
+                // A successful FireWire write may finish with ACK_COMPLETE and
+                // no separate response packet. The driver reports that as 0xFF.
+                let responseAccepted = result.responseCode == 0 ||
+                    (acceptsAckComplete && result.responseCode == 0xFF)
+                return result.status == 0 && responseAccepted ? result : nil
             }
             Thread.sleep(forTimeInterval: 0.01)
         }
