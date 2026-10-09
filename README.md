@@ -1,6 +1,25 @@
-# ASFireWire
+# Fireface Studio
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mrmidi_ASFW&metric=alert_status&token=3ca1b3d10414117bb3e75b1779090b4ea47f1585)](https://sonarcloud.io/summary/new_code?id=mrmidi_ASFW) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/mrmidi/ASFireWire)
+An experimental macOS app and DriverKit extension for the RME Fireface 800,
+built from [ASFireWire](https://github.com/mrmidi/ASFireWire) by Aleksandr
+Shabelnikov and its contributors. The original Apache 2.0 license and project
+history are preserved. Fireface Studio is an independent project and is not
+affiliated with RME or Apple.
+
+**Current hardware checkpoint:** playback was heard through physical outputs
+1/2 at 48 kHz with SIP disabled. Recording, other channels, long-term
+reliability, and operation with SIP enabled are not yet verified. This is a
+development snapshot, not an installable release. See
+[the checkpoint](documentation/FIREFACE_800_CHECKPOINT_2026-10-09.md) and the
+[project page](https://mars-fireface-studio.uk-number.chatgpt.site).
+
+The upstream project documentation follows below.
+
+---
+
+# ASFireWire (upstream documentation)
+
+[ASFireWire on GitHub](https://github.com/mrmidi/ASFireWire)
 
 ## Table of Contents
 
