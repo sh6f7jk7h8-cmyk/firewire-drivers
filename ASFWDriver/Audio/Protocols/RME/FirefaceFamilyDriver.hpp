@@ -189,6 +189,15 @@ public:
         SyncGeneration();
         auto h = ReadHealth(0);
         if (!h || !h->sourceLocked) return std::unexpected(h ? kIOReturnNotReady : h.error());
+        if (model_ == FirefaceModel::kFF800) {
+            // FF800 starts fetching host PCM only after both isochronous
+            // contexts are running. Linux's former protocol sends 28 zero
+            // quadlets here, after waiting for the streams to become ready.
+            std::array<uint32_t, 28> fetchAll{};
+            fetchModeTouched_ = true; // A timed-out write still needs rollback.
+            if (const IOReturn kr = WriteWords(Register::kStatus, fetchAll);
+                kr != kIOReturnSuccess) return std::unexpected(kr);
+        }
         return DuplexConfirmResult{.generation = io_.Generation(), .channels = channels_,
             .appliedClock = {.sampleRateHz = 48000}, .runtimeCaps = caps_, .status = h->status,
             .extStatus = h->extStatus};
@@ -216,8 +225,16 @@ public:
         const std::array<uint32_t, 4> ff400{0, 0, 0, 1};
         const IOReturn kr = model_ == FirefaceModel::kFF800
             ? WriteWords(Register::kFF800Stop, ff800) : WriteWords(Register::kFF400Stop, ff400);
-        if (kr == kIOReturnSuccess) { enabled_ = false; initialized_ = false; configured_ = false; }
-        return kr;
+        if (kr != kIOReturnSuccess) return kr;
+        if (model_ == FirefaceModel::kFF800 && fetchModeTouched_) {
+            // Restore the idle fetch mask after stopping the stream.
+            std::array<uint32_t, 28> stopFetching{};
+            stopFetching.fill(1U);
+            if (const IOReturn fetchKr = WriteWords(Register::kStatus, stopFetching);
+                fetchKr != kIOReturnSuccess) return fetchKr;
+        }
+        enabled_ = false; initialized_ = false; configured_ = false; fetchModeTouched_ = false;
+        return kIOReturnSuccess;
     }
 
 private:
@@ -229,6 +246,7 @@ private:
             configured_ = false;
             initialized_ = false;
             enabled_ = false;
+            fetchModeTouched_ = false;
             stateGeneration_ = current;
         }
     }
@@ -350,6 +368,7 @@ private:
     bool initialized_{false};
     bool configured_{false};
     bool enabled_{false};
+    bool fetchModeTouched_{false};
     AudioDuplexChannels channels_{};
     AudioStreamRuntimeCaps caps_{};
     FW::Generation stateGeneration_{0};

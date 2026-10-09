@@ -5,7 +5,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>16</string>
 	<key>CFBundleDisplayName</key>
 	<string>Fireface Studio Driver</string>
 	<key>IOKitPersonalities</key>

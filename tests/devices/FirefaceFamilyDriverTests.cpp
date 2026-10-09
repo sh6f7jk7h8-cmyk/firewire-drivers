@@ -180,12 +180,23 @@ TEST(FirefaceSequenceTests, FF800UsesActualReservedPlaybackAndDeviceSelectedCapt
     ASSERT_TRUE(family.ArmDeviceTxAndEnable());
     EXPECT_EQ(bus.writes.back().lo, 0x28U);
     EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0x1c,0x08,0,0x80}));
+    ASSERT_TRUE(family.Confirm());
+    EXPECT_EQ(bus.writes.back().lo, 0x801c0000U);
+    EXPECT_EQ(bus.writes.back().bytes, std::vector<uint8_t>(28U * 4U, 0));
     EXPECT_EQ(family.Stop(), kIOReturnSuccess);
-    EXPECT_EQ(bus.writes.back().lo, 0x34U);
-    EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0,0,0,0, 0,0,0,0, 0,0,0,0}));
-    ASSERT_EQ(bus.writes.size(), 3U); // no mixer, mute-mask, or clock-source writes
+    EXPECT_EQ(bus.writes[3].lo, 0x34U);
+    EXPECT_EQ(bus.writes[3].bytes, (std::vector<uint8_t>{0,0,0,0, 0,0,0,0, 0,0,0,0}));
+    EXPECT_EQ(bus.writes.back().lo, 0x801c0000U);
+    ASSERT_EQ(bus.writes.back().bytes.size(), 28U * 4U);
+    for (size_t i = 0; i < 28U; ++i) {
+        EXPECT_EQ(bus.writes.back().bytes[i * 4U], 1U);
+        EXPECT_EQ(bus.writes.back().bytes[i * 4U + 1U], 0U);
+        EXPECT_EQ(bus.writes.back().bytes[i * 4U + 2U], 0U);
+        EXPECT_EQ(bus.writes.back().bytes[i * 4U + 3U], 0U);
+    }
+    ASSERT_EQ(bus.writes.size(), 5U); // init, start, fetch on, stop, fetch off
     EXPECT_EQ(bus.writes[1].hi, 2U);
-    EXPECT_EQ(bus.writes[2].hi, 2U);
+    EXPECT_EQ(bus.writes[3].hi, 2U);
 }
 
 TEST(FirefaceSequenceTests, FF800S400TupleDoesNotSetTheS800Flag) {
