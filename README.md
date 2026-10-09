@@ -18,6 +18,11 @@ original contributors. [Aleksandr Legonkov (@sh6f7jk7h8-cmyk)](https://github.co
 is co-author of the Fireface 800 device work in this branch. Original commit
 attribution is retained in Git history.
 
+This device branch omits the inherited SCSI controller personality and
+entitlement because Apple approved DriverKit PCI, UserClient Access, DriverKit,
+and DriverKit Family Audio for this project, not the SCSI controller family.
+The generic FireWire core remains on the `main` branch.
+
 **Current hardware checkpoint:** playback was heard through physical outputs
 1/2 at 48 kHz with SIP disabled. Recording, other channels, long-term
 reliability, and operation with SIP enabled are not yet verified. This is a

@@ -105,29 +105,6 @@
 			<key>IOUserServerOneProcess</key>
 			<true/>
 		</dict>
-		<key>ASFWSCSIControllerService</key>
-		<dict>
-			<key>CFBundleIdentifier</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-			<key>CFBundleIdentifierKernel</key>
-			<string>com.apple.iokit.IOSCSIParallelFamily</string>
-			<key>IOClass</key>
-			<string>IOUserSCSIParallelInterfaceController</string>
-			<key>IOMatchCategory</key>
-			<string>ASFWSCSIController</string>
-			<key>IOPCIMatch</key>
-			<string>0x590111c1</string>
-			<key>IOPCITunnelCompatible</key>
-			<true/>
-			<key>IOProviderClass</key>
-			<string>IOPCIDevice</string>
-			<key>IOUserClass</key>
-			<string>ASFWSCSIController</string>
-			<key>IOUserServerName</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-			<key>IOUserServerOneProcess</key>
-			<true/>
-		</dict>
 	</dict>
 	<key>OSBundleUsageDescription</key>
 	<string>AS FireWire Driver</string>
