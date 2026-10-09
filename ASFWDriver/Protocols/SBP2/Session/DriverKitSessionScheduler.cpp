@@ -5,7 +5,7 @@
 #include "../../../Logging/Logging.hpp"
 
 #ifndef ASFW_HOST_TEST
-#include <net.asfw.driver/ASFWDriver.h>
+#include <com.marsproo.firefacestudio.driver/ASFWDriver.h>
 #endif
 
 #include <algorithm>

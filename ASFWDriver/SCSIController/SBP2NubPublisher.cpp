@@ -12,7 +12,7 @@
 #include <DriverKit/OSDictionary.h>
 #include <DriverKit/OSNumber.h>
 #include <DriverKit/OSSharedPtr.h>
-#include <net.asfw.driver/ASFWSBP2Nub.h>
+#include <com.marsproo.firefacestudio.driver/ASFWSBP2Nub.h>
 
 namespace ASFW::Protocols::SBP2 {
 

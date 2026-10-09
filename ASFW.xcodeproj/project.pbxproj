@@ -74,6 +74,7 @@
 		21A84F2210B5790322CA6D96 /* AvcUnitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742F890C4B17D4B7E7F6AA1 /* AvcUnitsStore.swift */; };
 		21EADFC03F93FA7169CD6C87 /* AsyncSubsystemDiagnostics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CDA4A76AF0336D8F0E016712 /* AsyncSubsystemDiagnostics.cpp */; };
 		233CDBED39515852CA27E4F7 /* ControllerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD731960BD463377A35C2E5 /* ControllerDetailView.swift */; };
+		233D8EF38D6AA86653A1FD22 /* FirefaceControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D10415E92C158B5ADB64ED7 /* FirefaceControlModel.swift */; };
 		23856115480D27BA60AEE458 /* FetchAgent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DBBFD00CC8DC86B858FABF8 /* FetchAgent.cpp */; };
 		23A6AD0BCAD1630D9CB496D2 /* ASFWAudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 020F14C4AC2D07707A5AA226 /* ASFWAudioDevice.cpp */; };
 		2411E9428D22E8D2FBD1D014 /* AnalyzerGlyphAtlasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFFC2B86F014F15E4E8D3C2 /* AnalyzerGlyphAtlasTests.swift */; };
@@ -173,7 +174,6 @@
 		4F6ED6CD89668AFF93E61BC4 /* MCP in Frameworks */ = {isa = PBXBuildFile; productRef = 7BFB1B9EAD7D4D66C86B4AB0 /* MCP */; };
 		4FD45DE09D312E94F4160B10 /* fwicons.icon in Resources */ = {isa = PBXBuildFile; fileRef = B31D2FEE1FD985CD7AE779D2 /* fwicons.icon */; };
 		501A2A879B5CE46A068C4895 /* DiceRegisterModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB526A29FF8CDD653C1E0F62 /* DiceRegisterModelTests.swift */; };
-		50562D75CAA6487A569E1DA3 /* net.asfw.driver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = B6CB2AFAEB80414349FBF935 /* net.asfw.driver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50919565F5D9A031D70542AC /* MetricsSink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC915CE751EF8C365B2EC9DB /* MetricsSink.cpp */; };
 		51CB28C0A2A31C5C46AB8121 /* AnalyzerRenderSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B11C3B77C3B4EDDD3C0146 /* AnalyzerRenderSubmissionTests.swift */; };
 		520CA9F8E87C81E066EFEDCB /* AnalyzerReadoutBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4E3DBB11D09B17427FEAD0 /* AnalyzerReadoutBatch.swift */; };
@@ -197,6 +197,7 @@
 		5C397FB626211A3FE98141FC /* Transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B249219CD87475D654686813 /* Transaction.cpp */; };
 		5C3FCF846F16A0AD2E258D32 /* BarrierUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 971D5A9356A91973832BB8F5 /* BarrierUtils.cpp */; };
 		5E05BDE900468AA53709FA6E /* MetricCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747E8B61F56CFA97DD0187AA /* MetricCard.swift */; };
+		5E7624CF1A5122A57A275D1D /* com.marsproo.firefacestudio.driver.dext in Embed System Extensions */ = {isa = PBXBuildFile; fileRef = 5D611E8970D09EAF614B8A95 /* com.marsproo.firefacestudio.driver.dext */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5EE74ECE1D5F2B9E6A77C230 /* AvcFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAA8438A849107BE049332BE /* AvcFrame.cpp */; };
 		5F7FDF8DEBADF8E990B5EAC3 /* SpectrogramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC9CA965BBAB9A20B4F53AA /* SpectrogramTests.swift */; };
 		5FF70D7B24D97BE26BEDFF8E /* ReadWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6B4EEB948F7332CD86745F /* ReadWriteView.swift */; };
@@ -248,6 +249,7 @@
 		75EDFDACF81FBC8EEF6D3AA1 /* GenericAvcProfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8C2DA61E525937C3A4F77F7 /* GenericAvcProfile.cpp */; };
 		766FE41CF2D3116E2DB61E35 /* AvcGraphBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59E5457F9203C72E40C4F72C /* AvcGraphBuilder.cpp */; };
 		77CDAD6D1FBE3C21AABC6C83 /* AvcReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72FF5C14E11A147CC838B5A /* AvcReportTests.swift */; };
+		780FCCCE570D2C005D99327E /* FirefaceStudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBE3EED35D2432AF6EAD5D3 /* FirefaceStudioView.swift */; };
 		7876EFD6591E5BE2719E2C01 /* AudioGeometryObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61520E1D95BE9E50D8316AB0 /* AudioGeometryObserverTests.swift */; };
 		797DC1FD51C0F0FB4959B06B /* BridgeCoInventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C3B58087537DAFE02B183CA /* BridgeCoInventory.cpp */; };
 		79975EDD451331BDAABF472D /* RomModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5470A979030FEE276E814B89 /* RomModels.swift */; };
@@ -326,6 +328,7 @@
 		9BFABEBFD4EE64F02ADFBBF1 /* AsyncSubsystemInterrupts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3F76378A96EF757865E11C4 /* AsyncSubsystemInterrupts.cpp */; };
 		9C4C3FBFB9E6754AAB92012A /* ASFWAudioDriverOutputWrite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A659E6F5865070706C22D40 /* ASFWAudioDriverOutputWrite.cpp */; };
 		9C87DF69A89E62030306D1FB /* DiagnosticsTextFormatter+Topology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F0E726223068E61ED92CE8 /* DiagnosticsTextFormatter+Topology.swift */; };
+		9D994638BFE670AE6F4577BB /* FirefaceMixerProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA0C5AF3664C5C4AD2F216E /* FirefaceMixerProtocolTests.swift */; };
 		9DEB99CB833F0C5A33229A6C /* AvcReportExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC75CD6326E3E7B4381F379D /* AvcReportExporter.swift */; };
 		9E9B2EAD948ACB82294F660B /* ASFWAvcAudioStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D38306BE12B0317CBF733A3F /* ASFWAvcAudioStream.cpp */; };
 		9EDB35B4B0F9F503A82DB7A8 /* AddressSpaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D4308D539CCEC3A5EBCFF7 /* AddressSpaceManager.cpp */; };
@@ -479,6 +482,7 @@
 		EC2228AC9080547776C0B05E /* TopologyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F7365A8D7469379CBE70E /* TopologyManager.cpp */; };
 		ECA90216D753FA6E9BE3ADB3 /* MackieOnyx400FProfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6584C34EAEB3398DDF00C1E1 /* MackieOnyx400FProfile.cpp */; };
 		EE252C976DEC6C30E860638C /* ASFWMCPCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417EE4C83805D8B15818D95 /* ASFWMCPCore.swift */; };
+		EE3DE6D947A4A6E9DBD9E48B /* FirefaceMixerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754158110821F4147ED65942 /* FirefaceMixerProtocol.swift */; };
 		EE5D08E5DDFCC321226A5B02 /* StatusHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FFC248C26AEF60A5184D251 /* StatusHandler.cpp */; };
 		EEDF47FF7D86F6DC2142146F /* ASFWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A2164238E9D98E27E762F /* ASFWTests.swift */; };
 		EF599DEE5F7463FD92D044D6 /* ASFWProtocolBooleanControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B6782BCBA6C17DF0ABBC5CD5 /* ASFWProtocolBooleanControl.cpp */; };
@@ -532,7 +536,7 @@
 			dstPath = "$(SYSTEM_EXTENSIONS_FOLDER_PATH)";
 			dstSubfolderSpec = 16;
 			files = (
-				50562D75CAA6487A569E1DA3 /* net.asfw.driver.dext in Embed System Extensions */,
+				5E7624CF1A5122A57A275D1D /* com.marsproo.firefacestudio.driver.dext in Embed System Extensions */,
 			);
 			name = "Embed System Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -655,6 +659,7 @@
 		1AFA6FC4ECEF232870D75867 /* AmdtpTxPacketizer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AmdtpTxPacketizer.hpp; sourceTree = "<group>"; };
 		1C12C1C06AF92442230E4C87 /* DeviceConfigurationStateMachine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DeviceConfigurationStateMachine.cpp; sourceTree = "<group>"; };
 		1CB9EEFFA4995AF78C48B94E /* DriverKitSessionScheduler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DriverKitSessionScheduler.cpp; sourceTree = "<group>"; };
+		1CBE3EED35D2432AF6EAD5D3 /* FirefaceStudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefaceStudioView.swift; sourceTree = "<group>"; };
 		1D3213E40BA26996BF13A9BE /* MAudioClockSourcePolicy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MAudioClockSourcePolicy.hpp; sourceTree = "<group>"; };
 		1D721FCF568B04B9AFD9DB65 /* PostResetTiming.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PostResetTiming.hpp; sourceTree = "<group>"; };
 		1DC9C3863E2E23A2E1EACC27 /* FireWireBusImpl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FireWireBusImpl.cpp; sourceTree = "<group>"; };
@@ -920,6 +925,8 @@
 		5C91338795CF9EDBFF83C105 /* TransactionCompletionHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransactionCompletionHandler.hpp; sourceTree = "<group>"; };
 		5C9CB7FD7D277B18AC1ABA76 /* DiceReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceReportView.swift; sourceTree = "<group>"; };
 		5CFD326310BE43F6EA6ECF38 /* AVCDiscovery.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AVCDiscovery.cpp; sourceTree = "<group>"; };
+		5D10415E92C158B5ADB64ED7 /* FirefaceControlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefaceControlModel.swift; sourceTree = "<group>"; };
+		5D611E8970D09EAF614B8A95 /* com.marsproo.firefacestudio.driver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = com.marsproo.firefacestudio.driver.dext; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D72F405B0691442CEBAEF1C /* AvcExtensionInventory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AvcExtensionInventory.hpp; sourceTree = "<group>"; };
 		5DBBFD00CC8DC86B858FABF8 /* FetchAgent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FetchAgent.cpp; sourceTree = "<group>"; };
 		5DEB4C39DCC090F393970EBA /* InterruptManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InterruptManager.cpp; sourceTree = "<group>"; };
@@ -1030,6 +1037,7 @@
 		74EADDF94AFD7CB8E9D1A8FD /* MAudioInternalTxTiming.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MAudioInternalTxTiming.hpp; sourceTree = "<group>"; };
 		751D51C8E06FC1670D3DCDB4 /* MotuModel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MotuModel.hpp; sourceTree = "<group>"; };
 		753A90E159A919F0CF3D606B /* AmdtpTypes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AmdtpTypes.hpp; sourceTree = "<group>"; };
+		754158110821F4147ED65942 /* FirefaceMixerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefaceMixerProtocol.swift; sourceTree = "<group>"; };
 		757EC74289724A098B1A039B /* SignalSourceCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SignalSourceCommand.hpp; sourceTree = "<group>"; };
 		75BF1539474CBA7AFB67A769 /* RxTelemetrySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxTelemetrySection.swift; sourceTree = "<group>"; };
 		75FA4BD49A436757DB447E83 /* RawPcm24In32Decoder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RawPcm24In32Decoder.hpp; sourceTree = "<group>"; };
@@ -1058,6 +1066,7 @@
 		79271072DF7A4A360B26D962 /* SaffireproCommon.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SaffireproCommon.hpp; sourceTree = "<group>"; };
 		7A352D7CC6CD9A3D444D1727 /* BridgeCoPlugInfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BridgeCoPlugInfo.hpp; sourceTree = "<group>"; };
 		7A73DB72F38AE4D2E61907F8 /* MotuPayloadWriter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MotuPayloadWriter.cpp; sourceTree = "<group>"; };
+		7BA0C5AF3664C5C4AD2F216E /* FirefaceMixerProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirefaceMixerProtocolTests.swift; sourceTree = "<group>"; };
 		7C1F80EB119F3DAC7AA95C43 /* MCPCmpToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPCmpToolsTests.swift; sourceTree = "<group>"; };
 		7C269EF508CFAF654ABF9C1A /* ASFWDriver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ASFWDriver.entitlements; sourceTree = "<group>"; };
 		7C3B58087537DAFE02B183CA /* BridgeCoInventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BridgeCoInventory.cpp; sourceTree = "<group>"; };
@@ -1277,7 +1286,6 @@
 		B6092FC4D28C8CBE1F474D4B /* AVCHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AVCHandler.cpp; sourceTree = "<group>"; };
 		B6782BCBA6C17DF0ABBC5CD5 /* ASFWProtocolBooleanControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ASFWProtocolBooleanControl.cpp; sourceTree = "<group>"; };
 		B68AF53D0E4DFFFEFFB6C111 /* AVCUnit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AVCUnit.cpp; sourceTree = "<group>"; };
-		B6CB2AFAEB80414349FBF935 /* net.asfw.driver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = net.asfw.driver.dext; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6FC8F89D537351E9BA9D735 /* ControllerConfig.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ControllerConfig.cpp; sourceTree = "<group>"; };
 		B72D79445AA6DCE3312ACA22 /* DbcCounter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DbcCounter.hpp; sourceTree = "<group>"; };
 		B72FF5C14E11A147CC838B5A /* AvcReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvcReportTests.swift; sourceTree = "<group>"; };
@@ -2250,6 +2258,7 @@
 				C3C3C0A53557FD4630647F63 /* DuetCodecTests.swift */,
 				51751F4E2707BF3956287D1F /* DuetViewModelLogicTests.swift */,
 				5547E3B90C64AA5CE17B300A /* DVFrameAssemblerTests.swift */,
+				7BA0C5AF3664C5C4AD2F216E /* FirefaceMixerProtocolTests.swift */,
 				C7C99BEBA907A7F59A00EE5A /* LogCategoryCatalogTests.swift */,
 				5A4E70ED75911158B0E744F2 /* AudioObserver */,
 				AA63228416151FD72A8A9C49 /* MCP */,
@@ -2699,6 +2708,7 @@
 				471CD94EA2FCBA026542CC55 /* AudioObserver */,
 				2A99D0A54221896A21BFB577 /* BeBoB */,
 				4F233BAC59AAA42214153A1D /* CoreAudio */,
+				F45A9F411E2A0145E86D3442 /* Fireface */,
 				6DD3B8BF810C126A86902BE6 /* MCP */,
 				5C0B525E7EB16C5044D318D9 /* Models */,
 				DBC334332CC9AF1D07DB43E8 /* ViewModels */,
@@ -3582,7 +3592,7 @@
 			children = (
 				E37CAE998855106595F9A703 /* ASFW.app */,
 				E789FE1BCC1F31A996C8E799 /* ASFWTests.xctest */,
-				B6CB2AFAEB80414349FBF935 /* net.asfw.driver.dext */,
+				5D611E8970D09EAF614B8A95 /* com.marsproo.firefacestudio.driver.dext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3600,6 +3610,16 @@
 				1301C9CE4C3BF9D915E506C2 /* TransactionManager.hpp */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		F45A9F411E2A0145E86D3442 /* Fireface */ = {
+			isa = PBXGroup;
+			children = (
+				5D10415E92C158B5ADB64ED7 /* FirefaceControlModel.swift */,
+				754158110821F4147ED65942 /* FirefaceMixerProtocol.swift */,
+				1CBE3EED35D2432AF6EAD5D3 /* FirefaceStudioView.swift */,
+			);
+			path = Fireface;
 			sourceTree = "<group>";
 		};
 		F54E27FA733DC1156F7A166D /* Store */ = {
@@ -3740,7 +3760,7 @@
 			packageProductDependencies = (
 			);
 			productName = ASFWDriver;
-			productReference = B6CB2AFAEB80414349FBF935 /* net.asfw.driver.dext */;
+			productReference = 5D611E8970D09EAF614B8A95 /* com.marsproo.firefacestudio.driver.dext */;
 			productType = "com.apple.product-type.driver-extension";
 		};
 		348672D607701677ABCB567C /* ASFWTests */ = {
@@ -3795,15 +3815,15 @@
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					0EB9A8DA75D08971084A440A = {
-						DevelopmentTeam = F6YA6B56LR;
+						DevelopmentTeam = 4GX52GBB7Z;
 						ProvisioningStyle = Automatic;
 					};
 					348672D607701677ABCB567C = {
-						DevelopmentTeam = F6YA6B56LR;
+						DevelopmentTeam = 4GX52GBB7Z;
 						ProvisioningStyle = Automatic;
 					};
 					EE5A446B3669D0171F9606EE = {
-						DevelopmentTeam = F6YA6B56LR;
+						DevelopmentTeam = 4GX52GBB7Z;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -4171,6 +4191,7 @@
 				A18A108AE5B0D9D77ACF32E0 /* DriverLogViewModelTests.swift in Sources */,
 				38FE60619DFBA6ECB035BE64 /* DuetCodecTests.swift in Sources */,
 				BBC4374CAF02DA7A26022E78 /* DuetViewModelLogicTests.swift in Sources */,
+				9D994638BFE670AE6F4577BB /* FirefaceMixerProtocolTests.swift in Sources */,
 				1B98140C1ABFB215EA154E06 /* LogCategoryCatalogTests.swift in Sources */,
 				AB26C52B22F65434EA8E93A7 /* MCPAvcFcpToolsTests.swift in Sources */,
 				EB90FCFD1A30165E08C0EE33 /* MCPBeBoBToolsTests.swift in Sources */,
@@ -4340,6 +4361,9 @@
 				891FEA1BA66C81E0AEC7F604 /* DuetControlView.swift in Sources */,
 				DE55E9D77A03DA7545779A33 /* DuetControlViewModel.swift in Sources */,
 				1EE53F3597318BDAB4BF7A58 /* DuetModels.swift in Sources */,
+				233D8EF38D6AA86653A1FD22 /* FirefaceControlModel.swift in Sources */,
+				EE3DE6D947A4A6E9DBD9E48B /* FirefaceMixerProtocol.swift in Sources */,
+				780FCCCE570D2C005D99327E /* FirefaceStudioView.swift in Sources */,
 				810AEF6ADC5C6393DAB9AC3B /* InfoRow.swift in Sources */,
 				1A2632C1A4F0C7F927DFD83C /* Item.swift in Sources */,
 				C07DCD725AE05F943F709CF4 /* KWeightBlockPipeline.swift in Sources */,
@@ -4404,18 +4428,18 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.asfw.appTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marsproo.firefacestudioTests;
+				PRODUCT_NAME = ASFWTests;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASFW.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ASFW";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirefaceStudio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FirefaceStudio";
 			};
 			name = Debug;
 		};
@@ -4425,18 +4449,18 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.asfw.appTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marsproo.firefacestudioTests;
+				PRODUCT_NAME = ASFWTests;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ASFW.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ASFW";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FirefaceStudio.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FirefaceStudio";
 			};
 			name = Release;
 		};
@@ -4475,7 +4499,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -4510,7 +4534,7 @@
 				CODE_SIGN_ENTITLEMENTS = ASFWDriver/ASFWDriver.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				DRIVERKIT_DEPLOYMENT_TARGET = 25.0;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -4536,8 +4560,8 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 0.5.0;
 				OTHER_LDFLAGS = "-framework DriverKit -framework PCIDriverKit -framework AudioDriverKit -framework SCSIControllerDriverKit";
-				PRODUCT_BUNDLE_IDENTIFIER = net.asfw.driver;
-				PRODUCT_NAME = net.asfw.driver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marsproo.firefacestudio.driver;
+				PRODUCT_NAME = com.marsproo.firefacestudio.driver;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = driverkit;
 				SKIP_INSTALL = YES;
@@ -4557,7 +4581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -4567,15 +4591,17 @@
 					"$(inherited)",
 					"$(SRCROOT)/ASFWDriver/Shared",
 				);
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_CFBundleDisplayName = "Fireface Studio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 0.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.asfw.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marsproo.firefacestudio;
+				PRODUCT_MODULE_NAME = ASFW;
+				PRODUCT_NAME = FirefaceStudio;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -4601,7 +4627,7 @@
 				CODE_SIGN_ENTITLEMENTS = ASFWDriver/ASFWDriver.Debug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				DRIVERKIT_DEPLOYMENT_TARGET = 25.0;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -4627,8 +4653,8 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MARKETING_VERSION = 0.5.0;
 				OTHER_LDFLAGS = "-framework DriverKit -framework PCIDriverKit -framework AudioDriverKit -framework SCSIControllerDriverKit";
-				PRODUCT_BUNDLE_IDENTIFIER = net.asfw.driver;
-				PRODUCT_NAME = net.asfw.driver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marsproo.firefacestudio.driver;
+				PRODUCT_NAME = com.marsproo.firefacestudio.driver;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = driverkit;
 				SKIP_INSTALL = YES;
@@ -4674,7 +4700,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -4713,7 +4739,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = F6YA6B56LR;
+				DEVELOPMENT_TEAM = 4GX52GBB7Z;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -4723,15 +4749,17 @@
 					"$(inherited)",
 					"$(SRCROOT)/ASFWDriver/Shared",
 				);
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_CFBundleDisplayName = "Fireface Studio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 0.5.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.asfw.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marsproo.firefacestudio;
+				PRODUCT_MODULE_NAME = ASFW;
+				PRODUCT_NAME = FirefaceStudio;
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;

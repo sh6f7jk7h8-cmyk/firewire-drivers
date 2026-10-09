@@ -68,7 +68,7 @@ final class DriverInstallManager: NSObject, OSSystemExtensionRequestDelegate {
         }
     }
 
-    private let extensionIdentifier = "net.asfw.driver"
+    private let extensionIdentifier = "com.marsproo.firefacestudio.driver"
     private let verificationTimeout: TimeInterval = 10
     private var pending: PendingOperation?
     private var verificationTimer: DispatchSourceTimer?

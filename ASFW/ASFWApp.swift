@@ -7,11 +7,11 @@
 
 import SwiftUI
 @main
-struct ASFWApp: App {
+struct FirefaceStudioApp: App {
     var body: some Scene {
         WindowGroup {
-            ModernContentView()
+            FirefaceStudioView()
         }
-        .defaultSize(width: 1440, height: 900)
+        .defaultSize(width: 1100, height: 760)
     }
 }

@@ -8,7 +8,7 @@
   <true/>
   <key>com.apple.developer.driverkit.userclient-access</key>
   <array>
-    <string>net.asfw.driver</string>
+    <string>com.marsproo.firefacestudio.driver</string>
   </array>
 </dict>
 </plist>

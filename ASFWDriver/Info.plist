@@ -7,7 +7,7 @@
 	<key>CFBundleVersion</key>
 	<string>10</string>
 	<key>CFBundleDisplayName</key>
-	<string>ASFireWire Driver</string>
+	<string>Fireface Studio Driver</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>ASFWAudioDriverService</key>
