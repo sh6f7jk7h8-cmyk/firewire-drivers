@@ -613,6 +613,48 @@ std::optional<TxCompletion> ATContextBase<Derived, Tag>::ScanCompletion() noexce
             return std::nullopt;
         }
 
+        // A payload packet has an OUTPUT_MORE-Immediate header (two blocks)
+        // followed by OUTPUT_LAST. OHCI reports the packet result on LAST;
+        // the header's transfer status can remain zero forever.
+        const uint16_t controlHi = static_cast<uint16_t>(
+            state.desc->control >> HW::OHCIDescriptor::kControlHighShift);
+        const uint8_t firstCommand = static_cast<uint8_t>(
+            (controlHi >> HW::OHCIDescriptor::kCmdShift) & 0xF);
+        if (state.isImmediate && firstCommand == HW::OHCIDescriptor::kCmdOutputMore) {
+            const size_t available = (state.tailIndex + state.capacity - state.headIndex) % state.capacity;
+            if (available < 3) {
+                unlock();
+                return std::nullopt;
+            }
+            auto* last = ring_->At((state.headIndex + 2) % state.capacity);
+            if (!last) {
+                unlock();
+                return std::nullopt;
+            }
+            if (dmaManager_) dmaManager_->FetchRange(last, sizeof(HW::OHCIDescriptor));
+            state.xferStatus = HW::AT_xferStatus(*last);
+            if (state.xferStatus == 0) {
+                unlock();
+                return std::nullopt;
+            }
+            const uint8_t tLabel = HW::ExtractTLabel(
+                reinterpret_cast<HW::OHCIDescriptorImmediate*>(state.desc));
+            state.desc = last;
+            state.isImmediate = false;
+            if (!DecodeCompletionState(state)) {
+                unlock();
+                return std::nullopt;
+            }
+            LogCompletionTelemetry(state);
+            ClearDescriptorBlocks(state.headIndex, 3, state.capacity);
+            const size_t newHead = (state.headIndex + 3) % state.capacity;
+            ring_->SetHead(newHead);
+            StopIfRingDrained("ScanCompletion (payload)", newHead, true);
+            const TxCompletion completion = MakeCompletion(state, tLabel);
+            unlock();
+            return completion;
+        }
+
         if (state.xferStatus == 0) {
             HandlePendingDescriptor(state);
             unlock();
@@ -918,13 +960,14 @@ void ATContextBase<Derived, Tag>::ClearDescriptorBlocks(size_t headIndex,
             continue;
         }
 
+        const bool isImmediate = HW::IsImmediate(*clearDesc);
         ClearDescriptorStatus(*clearDesc);
         if (dmaManager_) {
-            const bool isImmDesc = HW::IsImmediate(*clearDesc);
-            const size_t flushSize = isImmDesc ? sizeof(HW::OHCIDescriptorImmediate)
-                                               : sizeof(HW::OHCIDescriptor);
+            const size_t flushSize = isImmediate ? sizeof(HW::OHCIDescriptorImmediate)
+                                                 : sizeof(HW::OHCIDescriptor);
             dmaManager_->PublishRange(clearDesc, flushSize);
         }
+        if (isImmediate) ++i; // The next 16 bytes are inline packet data, not a descriptor.
     }
 }
 

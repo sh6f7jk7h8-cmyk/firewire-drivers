@@ -149,6 +149,9 @@ TEST(FirefaceRegisterTests, RegisterTupleUsesLittleEndianWithoutChangingBigEndia
         0x80, 0xbb, 0x00, 0x00, 0x03, 0x90, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00}));
     EXPECT_EQ(ASFW::Audio::RME::StartWord(ASFW::Audio::RME::FirefaceModel::kFF400, 5, false),
               0x80000000U | 18U | (5U << 5U));
+    EXPECT_EQ(ASFW::Audio::RME::StartWord(ASFW::Audio::RME::FirefaceModel::kFF800, 0, false), 28U);
+    EXPECT_EQ(ASFW::Audio::RME::StartWord(ASFW::Audio::RME::FirefaceModel::kFF800, 0, true),
+              28U | 0x800U);
     EXPECT_TRUE(ASFW::Audio::RME::IsValidAssignedChannel(ASFW::Audio::RME::FirefaceModel::kFF400, 7));
     EXPECT_FALSE(ASFW::Audio::RME::IsValidAssignedChannel(ASFW::Audio::RME::FirefaceModel::kFF400, 8));
     EXPECT_TRUE(ASFW::Audio::RME::IsValidAssignedChannel(ASFW::Audio::RME::FirefaceModel::kFF800, 63));
@@ -169,22 +172,19 @@ TEST(FirefaceSequenceTests, FF800UsesActualReservedPlaybackAndDeviceSelectedCapt
     auto assigned = family.AssignChannels(channels);
     ASSERT_TRUE(assigned);
     EXPECT_EQ(assigned->deviceToHostIsoChannel, 6);
-    ASSERT_EQ(bus.writes.size(), 2U);
-    EXPECT_EQ(bus.writes[0].hi, 0U);
-    EXPECT_EQ(bus.writes[0].lo, 0x801c0000U);
-    EXPECT_EQ(bus.writes[0].bytes, std::vector<uint8_t>(28U * 4U, 0));
-    EXPECT_EQ(bus.writes[1].hi, 2U);
-    EXPECT_EQ(bus.writes[1].lo, 0x1cU);
-    EXPECT_EQ(bus.writes[1].bytes, (std::vector<uint8_t>{0x80,0xbb,0,0, 3,0xe0,0,0, 0x1c,0x08,0,0}));
+    ASSERT_EQ(bus.writes.size(), 1U);
+    EXPECT_EQ(bus.writes[0].hi, 2U);
+    EXPECT_EQ(bus.writes[0].lo, 0x1cU);
+    EXPECT_EQ(bus.writes[0].bytes, (std::vector<uint8_t>{0x80,0xbb,0,0, 3,0xe0,0,0, 0x1c,0x08,0,0}));
     ASSERT_TRUE(family.ArmDeviceTxAndEnable());
     EXPECT_EQ(bus.writes.back().lo, 0x28U);
-    EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0x1c,0x08,0,0x80}));
+    EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0x1c,0x08,0,0}));
     EXPECT_EQ(family.Stop(), kIOReturnSuccess);
     EXPECT_EQ(bus.writes.back().lo, 0x34U);
     EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0,0,0,0, 0,0,0,0, 0,0,0,0}));
-    ASSERT_EQ(bus.writes.size(), 4U); // no mixer or clock-source writes
+    ASSERT_EQ(bus.writes.size(), 3U); // no mixer, mute-mask, or clock-source writes
+    EXPECT_EQ(bus.writes[1].hi, 2U);
     EXPECT_EQ(bus.writes[2].hi, 2U);
-    EXPECT_EQ(bus.writes[3].hi, 2U);
 }
 
 TEST(FirefaceSequenceTests, FF800S400TupleDoesNotSetTheS800Flag) {
@@ -194,9 +194,9 @@ TEST(FirefaceSequenceTests, FF800S400TupleDoesNotSetTheS800Flag) {
     ASFW::Audio::AudioDuplexChannels channels{}; channels.hostToDeviceIsoChannel = 1;
     ASSERT_TRUE(family.Configure(channels, {.sampleRateHz = 48000}));
     ASSERT_TRUE(family.AssignChannels(channels));
-    EXPECT_EQ(bus.writes[1].hi, 0x0002U);
-    EXPECT_EQ(bus.writes[1].lo, 0x1cU);
-    EXPECT_EQ(bus.writes[1].bytes, (std::vector<uint8_t>{0x80,0xbb,0,0, 1,0xe0,0,0, 28,0,0,0}));
+    EXPECT_EQ(bus.writes[0].hi, 0x0002U);
+    EXPECT_EQ(bus.writes[0].lo, 0x1cU);
+    EXPECT_EQ(bus.writes[0].bytes, (std::vector<uint8_t>{0x80,0xbb,0,0, 1,0xe0,0,0, 28,0,0,0}));
 }
 
 TEST(FirefaceSequenceTests, FF400RejectsOutOfRangeChannelBeforeAnyStreamingWrites) {
@@ -326,6 +326,7 @@ TEST(FirefaceSequenceTests, FF800CapturePollTimesOutAtBoundAndHonorsCancellation
     auto cancelled = cancellable.AssignChannels(channels);
     EXPECT_FALSE(cancelled);
     EXPECT_EQ(cancelled.error(), kIOReturnAborted);
+    cancel.store(false);
     EXPECT_EQ(cancellable.Stop(), kIOReturnSuccess);
 }
 
@@ -353,7 +354,7 @@ TEST(FirefaceSequenceTests, NewRouteGenerationDiscardsOldInitStateAndReinitializ
     ASFW::Audio::AudioDuplexChannels channels{};
     ASSERT_TRUE(family.Configure(channels, {.sampleRateHz = 48000}));
     ASSERT_TRUE(family.AssignChannels(channels));
-    ASSERT_EQ(bus.writes.size(), 2U);
+    ASSERT_EQ(bus.writes.size(), 1U);
 
     route.registry.InvalidateLiveMappingsForBusReset();
     ::ASFW::Discovery::ConfigROM rom{};
@@ -368,12 +369,11 @@ TEST(FirefaceSequenceTests, NewRouteGenerationDiscardsOldInitStateAndReinitializ
     ASSERT_TRUE(family.Configure(channels, {.sampleRateHz = 48000}));
     auto assigned = family.AssignChannels(channels);
     ASSERT_TRUE(assigned);
-    ASSERT_EQ(bus.writes.size(), 4U);
-    EXPECT_EQ(bus.writes[2].lo, 0x801c0000U);
-    EXPECT_EQ(bus.writes[3].lo, 0x1cU);
+    ASSERT_EQ(bus.writes.size(), 2U);
+    EXPECT_EQ(bus.writes[1].lo, 0x1cU);
 }
 
-TEST(FirefaceSequenceTests, FailedFetchInitStartAndStopWritesHaveSafeRollbackBoundaries) {
+TEST(FirefaceSequenceTests, FailedInitStartAndStopWritesHaveSafeRollbackBoundaries) {
     auto makeFamily = [](FirefaceScriptBus& bus, RouteState& route, ProtocolRegisterIO*& io,
                          std::unique_ptr<ProtocolRegisterIO>& owned,
                          ASFW::Audio::RME::FirefaceFamilyDriver*& family,
@@ -385,18 +385,6 @@ TEST(FirefaceSequenceTests, FailedFetchInitStartAndStopWritesHaveSafeRollbackBou
         family = ownedFamily.get();
     };
     ASFW::Audio::AudioDuplexChannels channels{};
-    {
-        FirefaceScriptBus bus; RouteState route; ProtocolRegisterIO* io{};
-        std::unique_ptr<ProtocolRegisterIO> owned; ASFW::Audio::RME::FirefaceFamilyDriver* family{};
-        std::unique_ptr<ASFW::Audio::RME::FirefaceFamilyDriver> ownedFamily;
-        makeFamily(bus, route, io, owned, family, ownedFamily);
-        ASSERT_TRUE(family->Configure(channels, {.sampleRateHz=48000}));
-        bus.failWriteAddress = 0x801c0000ULL;
-        EXPECT_FALSE(family->AssignChannels(channels));
-        EXPECT_EQ(bus.writes.size(), 1U); // failed fetch is not followed by init or stop traffic
-        EXPECT_EQ(family->Stop(), kIOReturnSuccess);
-        EXPECT_EQ(bus.writes.size(), 1U);
-    }
     {
         FirefaceScriptBus bus; RouteState route; ProtocolRegisterIO* io{};
         std::unique_ptr<ProtocolRegisterIO> owned; ASFW::Audio::RME::FirefaceFamilyDriver* family{};

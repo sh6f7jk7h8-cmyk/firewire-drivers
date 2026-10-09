@@ -55,7 +55,7 @@ inline constexpr uint32_t kConfiguredSourceMask = 0x1c01;
 [[nodiscard]] constexpr uint32_t StartWord(FirefaceModel model, uint8_t captureChannel,
                                             bool s800) noexcept {
     return model == FirefaceModel::kFF800
-        ? 0x80000000U | 28U | (s800 ? 0x800U : 0U)
+        ? 28U | (s800 ? 0x800U : 0U)
         : 0x80000000U | 18U | (static_cast<uint32_t>(captureChannel) << 5U);
 }
 [[nodiscard]] constexpr bool IsValidAssignedChannel(FirefaceModel model, uint8_t channel) noexcept {
@@ -116,11 +116,13 @@ public:
             (!IsValidAssignedChannel(model_, channels_.hostToDeviceIsoChannel) ||
              !IsValidAssignedChannel(model_, channels_.deviceToHostIsoChannel)))
             return std::unexpected(kIOReturnBadArgument);
-        const uint32_t count = model_ == FirefaceModel::kFF800 ? 28U : 18U;
-        std::array<uint32_t, 28> zeros{};
-        if (const IOReturn kr = WriteWords(Register::kStatus,
-                std::span<const uint32_t>(zeros.data(), count)); kr != kIOReturnSuccess)
-            return std::unexpected(kr);
+        if (model_ == FirefaceModel::kFF400) {
+            std::array<uint32_t, 18> zeros{};
+            if (const IOReturn kr = WriteWords(Register::kStatus, zeros); kr != kIOReturnSuccess)
+                return std::unexpected(kr);
+        }
+        // FF800 does not need a mute-mask write to assign its isoch channels.
+        // Its 112-byte mask write can stall the ASFW async transmit context.
         const auto words = InitWords(model_, channels_.hostToDeviceIsoChannel, s800_);
         initialized_ = true; // An uncertain init completion must be reset on rollback.
         if (const IOReturn kr = WriteWords(InitAddress(), words); kr != kIOReturnSuccess)

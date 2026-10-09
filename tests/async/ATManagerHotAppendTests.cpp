@@ -108,4 +108,25 @@ TEST_F(ATManagerHotAppendTest, Path1RefusesToArmWhileContextStaysActive) {
     EXPECT_EQ(CommandPtr(), 0u) << "CommandPtr must never be written on an ACTIVE context (OHCI §3.1.1)";
 }
 
+TEST_F(ATManagerHotAppendTest, PayloadPacketCompletesFromLastDescriptorStatus) {
+    auto chain = PlacePayloadChain();
+    auto* header = reinterpret_cast<HW::OHCIDescriptorImmediate*>(chain.first);
+    auto* last = chain.last;
+    constexpr uint8_t kTLabel = 37;
+    header->immediateData[0] = static_cast<uint32_t>(kTLabel) << 10;
+    ASSERT_EQ(manager_.Submit(std::move(chain), {}), kIOReturnSuccess);
+
+    EXPECT_FALSE(ctx_.ScanCompletion());
+    EXPECT_EQ(header->common.xferStatus, 0u);
+    last->timeStamp = 0x1234;
+    last->xferStatus = 0x8011; // OHCI writes completion status to OUTPUT_LAST.
+
+    const auto completion = ctx_.ScanCompletion();
+    ASSERT_TRUE(completion);
+    EXPECT_EQ(completion->tLabel, kTLabel);
+    EXPECT_EQ(completion->timeStamp, 0x1234u);
+    EXPECT_EQ(completion->eventCode, ASFW::Async::OHCIEventCode::kAckComplete);
+    EXPECT_EQ(ring_.Head(), ring_.Tail());
+}
+
 } // namespace ASFW::Testing
