@@ -175,8 +175,11 @@ final class FirefaceControlModel: ObservableObject {
 
     private func findDevice() -> ASFWDriverConnector.FWDeviceInfo? {
         connector.getDiscoveredDevices()?.first {
+            // The FF800 advertises 0x101800 in its unit directory, but its
+            // root device model ID may be absent (zero) in the discovery API.
             $0.vendorId == FirefaceMixerProtocol.vendorID &&
-            $0.modelId == FirefaceMixerProtocol.modelID
+            ($0.modelId == FirefaceMixerProtocol.modelID ||
+             $0.modelName.localizedCaseInsensitiveContains("Fireface 800"))
         }
     }
 
