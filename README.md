@@ -1,5 +1,11 @@
 # Fireface Studio
 
+This is the [`fireface-800` device branch](https://github.com/sh6f7jk7h8-cmyk/firewire-drivers/tree/fireface-800)
+of the open [FireWire Drivers repository](https://github.com/sh6f7jk7h8-cmyk/firewire-drivers).
+Share device information and test results in the repository's Issues or
+Discussions; propose code changes through pull requests. The source is free to
+download and use under the Apache 2.0 license.
+
 An experimental macOS app and DriverKit extension for the RME Fireface 800,
 built from [ASFireWire](https://github.com/mrmidi/ASFireWire) by Aleksandr
 Shabelnikov and its contributors. The original Apache 2.0 license and project
