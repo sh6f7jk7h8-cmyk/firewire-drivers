@@ -26,18 +26,21 @@ struct FirefaceStudioView: View {
     }
 
     var body: some View {
-        NavigationSplitView {
+        HStack(spacing: 0) {
             List(Section.allCases, selection: $section) { item in
                 Label(item.rawValue, systemImage: item.icon).tag(item)
             }
-            .navigationTitle("Fireface Studio")
-            .navigationSplitViewColumnWidth(min: 190, ideal: 210, max: 260)
-        } detail: {
-            switch section {
-            case .mixer: mixer
-            case .clock: clock
-            case .diagnostics: ModernContentView()
+            .listStyle(.sidebar)
+            .frame(width: 210)
+            Divider()
+            Group {
+                switch section {
+                case .mixer: mixer
+                case .clock: clock
+                case .diagnostics: ModernContentView()
+                }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .frame(minWidth: 900, minHeight: 620)
         .onAppear { control.start() }
