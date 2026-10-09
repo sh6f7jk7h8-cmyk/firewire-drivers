@@ -1,6 +1,42 @@
-# ASFireWire
+# FireWire Drivers
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mrmidi_ASFW&metric=alert_status&token=3ca1b3d10414117bb3e75b1779090b4ea47f1585)](https://sonarcloud.io/summary/new_code?id=mrmidi_ASFW) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/mrmidi/ASFireWire)
+An open, collaborative repository for developing drivers and restoring FireWire
+devices on modern macOS. Everyone can browse, clone, and download the source
+code for free under the [Apache 2.0 license](LICENSE).
+
+Share device information, protocol captures, test results, documentation, and
+ideas in [Discussions](https://github.com/sh6f7jk7h8-cmyk/firewire-drivers/discussions)
+or [Issues](https://github.com/sh6f7jk7h8-cmyk/firewire-drivers/issues).
+Contribute code through pull requests. Before posting logs or captures, remove
+personal data, credentials, and serial numbers you do not want to publish.
+
+**Device branch:** [fireface-800](https://github.com/sh6f7jk7h8-cmyk/firewire-drivers/tree/fireface-800)
+contains the experimental work for the **RME Fireface 800 connected by FireWire**.
+Its current hardware checkpoint is playback on outputs 1/2 at 48 kHz with SIP
+disabled; it is not a signed, validated release.
+
+This repository starts from [ASFireWire](https://github.com/mrmidi/ASFireWire)
+by Aleksandr Shabelnikov and its contributors. Their project history and
+Apache 2.0 license are preserved. This is an independent effort, not an
+official RME or Apple project.
+
+## По-русски
+
+Это открытый репозиторий для совместной работы над драйверами устройств
+FireWire. Исходный код можно бесплатно смотреть, скачивать и использовать по
+лицензии Apache 2.0. Делитесь сведениями об устройствах, результатами тестов,
+логами, документацией и идеями в Discussions или Issues; исправления кода
+предлагайте через pull request. Перед публикацией логов удаляйте личные данные
+и секреты.
+
+Отдельная ветка **[fireface-800](https://github.com/sh6f7jk7h8-cmyk/firewire-drivers/tree/fireface-800)**
+посвящена звуковой карте **RME Fireface 800 с подключением FireWire**.
+
+---
+
+# ASFireWire (upstream documentation)
+
+[ASFireWire on GitHub](https://github.com/mrmidi/ASFireWire)
 
 ## Table of Contents
 
