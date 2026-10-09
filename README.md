@@ -12,6 +12,12 @@ Shabelnikov and its contributors. The original Apache 2.0 license and project
 history are preserved. Fireface Studio is an independent project and is not
 affiliated with RME or Apple.
 
+**Authors:** [Aleksandr Shabelnikov (@mrmidi)](https://github.com/mrmidi) is
+the creator and lead developer of the ASFireWire core, together with its
+original contributors. [Aleksandr Legonkov (@sh6f7jk7h8-cmyk)](https://github.com/sh6f7jk7h8-cmyk)
+is co-author of the Fireface 800 device work in this branch. Original commit
+attribution is retained in Git history.
+
 **Current hardware checkpoint:** playback was heard through physical outputs
 1/2 at 48 kHz with SIP disabled. Recording, other channels, long-term
 reliability, and operation with SIP enabled are not yet verified. This is a
