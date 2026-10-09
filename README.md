@@ -20,6 +20,15 @@ by Aleksandr Shabelnikov and its contributors. Their project history and
 Apache 2.0 license are preserved. This is an independent effort, not an
 official RME or Apple project.
 
+## Authors and credit
+
+- **FireWire driver core:** [Aleksandr Shabelnikov (@mrmidi)](https://github.com/mrmidi),
+  creator and lead developer of ASFireWire, with the original contributors.
+- **Fireface 800 device branch:** [Aleksandr Legonkov (@sh6f7jk7h8-cmyk)](https://github.com/sh6f7jk7h8-cmyk),
+  co-author of the Fireface 800 work built on that core.
+
+The Git history keeps the authorship of the original ASFireWire commits.
+
 ## По-русски
 
 Это открытый репозиторий для совместной работы над драйверами устройств
@@ -31,6 +40,10 @@ FireWire. Исходный код можно бесплатно смотреть
 
 Отдельная ветка **[fireface-800](https://github.com/sh6f7jk7h8-cmyk/firewire-drivers/tree/fireface-800)**
 посвящена звуковой карте **RME Fireface 800 с подключением FireWire**.
+Основной движок ASFireWire разработал
+[Александр Шабельников (@mrmidi)](https://github.com/mrmidi) с участниками
+исходного проекта. [Александр Легоньков (@sh6f7jk7h8-cmyk)](https://github.com/sh6f7jk7h8-cmyk) —
+соавтор работы над веткой Fireface 800.
 
 ---
 
