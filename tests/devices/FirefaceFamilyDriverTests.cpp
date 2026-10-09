@@ -149,9 +149,10 @@ TEST(FirefaceRegisterTests, RegisterTupleUsesLittleEndianWithoutChangingBigEndia
         0x80, 0xbb, 0x00, 0x00, 0x03, 0x90, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00}));
     EXPECT_EQ(ASFW::Audio::RME::StartWord(ASFW::Audio::RME::FirefaceModel::kFF400, 5, false),
               0x80000000U | 18U | (5U << 5U));
-    EXPECT_EQ(ASFW::Audio::RME::StartWord(ASFW::Audio::RME::FirefaceModel::kFF800, 0, false), 28U);
+    EXPECT_EQ(ASFW::Audio::RME::StartWord(ASFW::Audio::RME::FirefaceModel::kFF800, 0, false),
+              0x80000000U | 28U);
     EXPECT_EQ(ASFW::Audio::RME::StartWord(ASFW::Audio::RME::FirefaceModel::kFF800, 0, true),
-              28U | 0x800U);
+              0x80000000U | 28U | 0x800U);
     EXPECT_TRUE(ASFW::Audio::RME::IsValidAssignedChannel(ASFW::Audio::RME::FirefaceModel::kFF400, 7));
     EXPECT_FALSE(ASFW::Audio::RME::IsValidAssignedChannel(ASFW::Audio::RME::FirefaceModel::kFF400, 8));
     EXPECT_TRUE(ASFW::Audio::RME::IsValidAssignedChannel(ASFW::Audio::RME::FirefaceModel::kFF800, 63));
@@ -178,7 +179,7 @@ TEST(FirefaceSequenceTests, FF800UsesActualReservedPlaybackAndDeviceSelectedCapt
     EXPECT_EQ(bus.writes[0].bytes, (std::vector<uint8_t>{0x80,0xbb,0,0, 3,0xe0,0,0, 0x1c,0x08,0,0}));
     ASSERT_TRUE(family.ArmDeviceTxAndEnable());
     EXPECT_EQ(bus.writes.back().lo, 0x28U);
-    EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0x1c,0x08,0,0}));
+    EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0x1c,0x08,0,0x80}));
     EXPECT_EQ(family.Stop(), kIOReturnSuccess);
     EXPECT_EQ(bus.writes.back().lo, 0x34U);
     EXPECT_EQ(bus.writes.back().bytes, (std::vector<uint8_t>{0,0,0,0, 0,0,0,0, 0,0,0,0}));

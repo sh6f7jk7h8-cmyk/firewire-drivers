@@ -55,7 +55,7 @@ inline constexpr uint32_t kConfiguredSourceMask = 0x1c01;
 [[nodiscard]] constexpr uint32_t StartWord(FirefaceModel model, uint8_t captureChannel,
                                             bool s800) noexcept {
     return model == FirefaceModel::kFF800
-        ? 28U | (s800 ? 0x800U : 0U)
+        ? 0x80000000U | 28U | (s800 ? 0x800U : 0U)
         : 0x80000000U | 18U | (static_cast<uint32_t>(captureChannel) << 5U);
 }
 [[nodiscard]] constexpr bool IsValidAssignedChannel(FirefaceModel model, uint8_t channel) noexcept {
